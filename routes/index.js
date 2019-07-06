@@ -11,8 +11,6 @@ admin.initializeApp({
 });
 
 var db = admin.database();
-var ref = db.ref("code_for_good/events_schema");
-var eventsRef = ref.child("events");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -20,35 +18,86 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/createEvent', function(req, res, next){
-  console.log(req.body);
-  console.log("HERE");
+    let ref = db.ref("events");
 
-  ref.once("value", function(snapshot) {
+    ref.once("value", function(snapshot) {
       console.log(snapshot.val());
-  });
+      res.send({
+         code:0,
+         message:"Event has been successfully created!"
+      });
+    }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+        res.send({
+            code:1,
+            message:"Error while creating event, please try again",
+            error:errorObject.code
+        });
+    });
 
-  let date = req.body.date;
-  let name_of_event = req.body.name_of_event;
-  let address = req.body.address;
-  let volunteer_hours = req.body.volunteer_hours;
-  let skill_set = req.body.skill_set.split(',');
-  let no_of_volunteers_needed = req.body.no_of_volunteers_needed;
-  let lat = req.body.lat;
-  let long = req.body.long;
-  let latLong = {
-      lat:lat,
-      long:long
-  };
-  eventsRef.push({
-      date : date,
-      name_of_event : name_of_event,
-      address : address,
-      volunteer_hours : volunteer_hours,
-      skill_set : skill_set,
-      no_of_volunteers_needed : no_of_volunteers_needed,
-      location : latLong
+    let enddate = req.body.enddate;
+    let endtime = req.body.endtime;
+    let description = req.body.description;
+    let location = {
+        city : req.body.location.city,
+        country : req.body.location.country,
+        latitude : req.body.location.latitude,
+        longitude : req.body.location.longitude,
+        name : req.body.location.name
+    };
+    let name = req.body.name;
+    let needs_volunteers = true;
+    let startdate = req.body.startdate;
+    let starttime = req.body.starttime;
+
+    ref.push({
+        enddate : enddate,
+        endtime : endtime,
+        description : description,
+        location : location,
+        name : name,
+        needs_volunteers : needs_volunteers,
+        startdate : startdate,
+        starttime : starttime,
   });
-  res.send("Hello");
+});
+
+router.post('/allEvents', function(req, res, next){
+    let events = db.ref("events");
+
+    events.on("value", function(snapshot) {
+        res.send({
+            code : 0,
+            message : "Event details have been successfully fetched",
+            data : snapshot.val()
+        });
+    }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+        res.send({
+           code : 1,
+           message : "Error fetching Event details"
+        });
+    });
+});
+
+router.post('/deleteEvent', function(req, res, next){
+    let eventID = req.body.eventID;
+    let del_ref = db.ref("events/" + eventID);
+    del_ref.remove(function(error) {
+        if(error){
+            res.send({
+                code:1,
+                message:"Error while deleting event, please check event ID",
+                error:error
+            });
+        }
+        else{
+            res.send({
+                code:0,
+                message:"Successfully deleted event"
+            })
+        }
+    });
 });
 
 module.exports = router;
