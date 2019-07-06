@@ -83,4 +83,6 @@
     <string name="location">Location :</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="enter_event">enter event</string>
+    <string name="end_event">END EVENT</string>
 </resources>

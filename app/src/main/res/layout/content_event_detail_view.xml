@@ -202,17 +202,44 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <Button
                             android:id="@+id/btn_register"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/margin_left"
                             android:layout_marginTop="@dimen/margin_left"
+                            android:layout_marginBottom="@dimen/margin_left"
                             android:background="@color/colorPrimary"
                             android:padding="@dimen/padding_view"
                             android:text="@string/register"
+                            android:textColor="@color/text_white"
+                            android:textSize="@dimen/textViewContent" />
+
+                        <Button
+                            android:id="@+id/btn_enter_event"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_left"
+                            android:layout_marginBottom="@dimen/margin_left"
+                            android:background="@color/colorPrimary"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/padding_view"
+                            android:text="@string/enter_event"
+                            android:textColor="@color/text_white"
+                            android:textSize="@dimen/textViewContent" />
+
+                        <Button
+                            android:id="@+id/btn_end_event"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_left"
+                            android:layout_marginBottom="@dimen/margin_left"
+                            android:background="@color/colorPrimary"
+                            android:layout_gravity="center"
+                            android:padding="@dimen/padding_view"
+                            android:text="@string/end_event"
+                            android:visibility="gone"
                             android:textColor="@color/text_white"
                             android:textSize="@dimen/textViewContent" />
 
