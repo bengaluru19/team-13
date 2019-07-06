@@ -100,4 +100,32 @@ router.post('/deleteEvent', function(req, res, next){
     });
 });
 
+router.post('/fetchEvent', function(req, res, next){
+    let eventID = req.body.eventID;
+    let events = db.ref("events/" + eventID);
+
+    events.on("value", function(snapshot) {
+        if(snapshot.val()) {
+            res.send({
+                code: 0,
+                message: "Event details have been successfully fetched",
+                data: snapshot.val()
+            });
+        }
+        else{
+            res.send({
+                code : 1,
+                message : "Error fetching event details, please check event ID"
+            });
+        }
+    }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+        res.send({
+            code : 1,
+            message : "Fatal error fetching event details",
+            error: errorObject.code
+        });
+    });
+});
+
 module.exports = router;
