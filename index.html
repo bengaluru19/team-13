@@ -122,13 +122,56 @@
             </div>
         </section>
         <!--================Event Date Area =================-->
+<section class="event_blog_area">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["calendar"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+   function drawChart() {
+       var dataTable = new google.visualization.DataTable();
+       dataTable.addColumn({ type: 'date', id: 'Date' });
+       dataTable.addColumn({ type: 'number', id: 'Volunteers_Required' });
+       dataTable.addRows([
+          [ new Date(2019, 3, 13), 50 ],
+          [ new Date(2019, 3, 14), 100 ],
+          [ new Date(2019, 3, 15), 75 ],
+          [ new Date(2019, 3, 16), 150 ],
+          [ new Date(2019, 3, 17), 75 ],
+          [ new Date(2019, 6, 4), 150 ],
+          [ new Date(2019, 6, 5), 70 ],
+          [ new Date(2019, 5, 12), 110 ],
+          [ new Date(2019, 7, 13), 80 ],
+          [ new Date(2019, 8, 19), 88 ],
+          [ new Date(2019, 7, 23), 63 ],
+          [ new Date(2019, 7, 24), 82 ],
+          [ new Date(2019, 8, 30), 120 ],
+          // Many rows omitted for brevity.
+          [ new Date(2019, 9, 4), 150 ],
+          [ new Date(2019, 9, 5), 70 ],
+          [ new Date(2019, 9, 12), 110 ],
+          [ new Date(2019, 9, 13), 80 ],
+          [ new Date(2019, 9, 19), 88 ],
+          [ new Date(2019, 9, 23), 63 ],
+          [ new Date(2019, 9, 24), 82 ],
+          [ new Date(2019, 9, 30), 120 ]
+        ]);
+
+       var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+
+       var options = {
+         title: "Future Upcoming events calender",
+         height: 350,
+       };
+
+       chart.draw(dataTable, options);
+   }
+    </script>
+    <div id="calendar_basic" style="padding-top: 25px; padding-left: 150px; align-content: center; font-size: 1.25em height=200px;"></div>
         
         <!--================Event Blog Area=================-->
-        <section class="event_blog_area section_gap">
-            <div class="container">
-                <div class="section_title text-center">
-                    <h2>Upcoming Events</h2>
-                </div>
+        <!-- <section class="event_blog_area section_gap">
+         -->    <div class="container" style="padding-top: 20px; margin-top: 0px;">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="event_post">
@@ -180,11 +223,31 @@
                 </div>
                 <div class="sermons_slider owl-carousel">
                     <div class="item row">
-                        <div class="col-lg-8">
-                            <div class="sermons_image">
-                                <img src="image/lineg.png" alt="">
-                                
-                            </div>
+                        <div class="col-lg-8"  id="curve_chart">
+                                                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Events organised'],
+          ['Jan',  10],
+          ['Feb',  11],
+          ['Mar',  6],
+          ['Apr',  8],
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
                         </div>
                         <div class="col-lg-4">
                             <div class="sermons_content">
@@ -193,12 +256,14 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="item row">
                         <div class="col-lg-8">
-                            <div class="sermons_image">
-                                <img src="image/barg.png" alt="">
+             <div class="sermons_image">
+                                 <img src="image/barg.png" alt="" style="width: 100%; height: 200px;">
                                 
                             </div>
+ 
                         </div>
                         <div class="col-lg-4">
                             <div class="sermons_content">
@@ -211,7 +276,7 @@
                 <div class="item row">
                         <div class="col-lg-8">
                             <div class="sermons_image">
-                                <img src="image/pieg.png" alt="">
+                                 <img src="image/pieg.png" alt="" style="width: 60%; height: 200px;">
                                 
                             </div>
                         </div>
@@ -227,9 +292,8 @@
         </section>
         <!--================Sermons work Area=================-->
         
-
         
-        <!--================ start footer Area  =================-->	
+        <!--================ start footer Area  =================-->    
         <footer class="footer-area section_gap">
             <div class="container">
                 <div class="row">
@@ -238,17 +302,17 @@
                             <h6 class="footer_title">About Agency</h6>
                             <p>Creating a positive impact in the lives of children, through health and education initiatives, empowering them. </p>
                         </div>
-                    </div>							
+                    </div>                          
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-footer-widget">
                             <h6 class="footer_title">Newsletter</h6>
-                            		
+                                    
                             <div id="mc_embed_signup">
                                 <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
                                     <div class="input-group d-flex flex-row">
                                         <input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
-                                        <button class="btn sub-btn"><span class="lnr lnr-location"></span></button>		
-                                    </div>									
+                                        <button class="btn sub-btn"><span class="lnr lnr-location"></span></button>     
+                                    </div>                                  
                                     <div class="mt-10 info"></div>
                                 </form>
                             </div>
@@ -268,12 +332,12 @@
                                 <li><img src="image/instagram/Image-08.jpg" alt=""></li>
                             </ul>
                         </div>
-                    </div>						
+                    </div>                      
                 </div>
                 
             </div>
         </footer>
-		<!--================ End footer Area  =================-->
+        <!--================ End footer Area  =================-->
         
         
         <!-- Optional JavaScript -->
