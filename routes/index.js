@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var admin = require("firebase-admin");
+var path = require("path");
 
 var serviceAccount = require("../codeforgood-team13.json");
+console.log("In Directory: ",__dirname);
 require('dotenv').config({path: __dirname + '/../.env'});
 
 admin.initializeApp({
@@ -12,12 +14,95 @@ admin.initializeApp({
 
 var db = admin.database();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+//To generate random cookie value
+function rand_cookieVal(length, current) {
+    current = current ? current : '';
+    return length ? rand_cookieVal(--length, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz".charAt(Math.floor(Math.random() * 60)) + current) : current;
+}
+
+var verifyAdmin = (req,res,next)=>{
+    var cookie = req.cookies.cookieVal;
+    if(cookie === undefined){
+        res.redirect("/login");
+    }else{
+        db.ref('admin').orderByChild("cookieVal")
+            .equalTo(cookie)
+            .once("value", function(snapshot) {
+                if(snapshot.val()) {
+                    console.log("Valid Login");
+                    next();
+                }
+                else{
+                    res.redirect("/login");
+                }
+            });
+    }
+};
+
+/* GET Login page. */
+router.get('/login', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/createEvent', function(req, res, next){
+/* GET Login page. */
+router.get('/home', verifyAdmin, function(req, res, next) {
+    res.render('error', { title: 'Express' });
+});
+
+//Admin Signup
+router.post('/signup', function(req, res) {
+
+    let newUserName = req.body.user_name;
+    let newUserPass = req.body.user_pass;
+
+    let ref = db.ref("admin");
+    ref.push({
+        name : newUserName,
+        password : newUserPass
+    });
+});
+
+
+//Perform authentication of admin
+router.post('/login', function(req, res){
+    console.log(req.body);
+
+    var user_name = req.body.user_name;
+    var user_password = req.body.user_pass;
+
+    db.ref('admin').orderByChild("name")
+        .equalTo(user_name)
+        .once("value", function(snapshot) {
+            if(snapshot.val()) {
+                snapshot.forEach(function (child) {
+                    console.log(child.val());
+                    if(child.val().password === user_password) {
+                        let cookieVal = rand_cookieVal(10);
+                        child.ref.update({ 'cookieVal': cookieVal});
+                        res.cookie('cookieVal',cookieVal, { maxAge: 90000, httpOnly: true }).send({
+                            code: 0,
+                            message: "Valid Login"
+                        });
+                    }
+                    else{
+                        res.cookie('cookieVal',null, { maxAge: -1, httpOnly: true }).send({
+                            code: 1,
+                            message: "Invalid Username/Password"
+                        });
+                    }
+                });
+            }
+            else{
+                res.send({
+                    code: 1,
+                    message: "Username does not exist in the DB"
+                });
+            }
+        });
+
+});
+
+router.post('/createEvent', verifyAdmin, function(req, res, next){
     let ref = db.ref("events");
 
     ref.once("value", function(snapshot) {
@@ -62,7 +147,7 @@ router.post('/createEvent', function(req, res, next){
   });
 });
 
-router.post('/allEvents', function(req, res, next){
+router.post('/allEvents', verifyAdmin, function(req, res, next){
     let events = db.ref("events");
 
     events.on("value", function(snapshot) {
@@ -80,7 +165,7 @@ router.post('/allEvents', function(req, res, next){
     });
 });
 
-router.post('/deleteEvent', function(req, res, next){
+router.post('/deleteEvent', verifyAdmin, function(req, res, next){
     let eventID = req.body.eventID;
     let del_ref = db.ref("events/" + eventID);
     del_ref.remove(function(error) {
@@ -100,7 +185,7 @@ router.post('/deleteEvent', function(req, res, next){
     });
 });
 
-router.post('/fetchEvent', function(req, res, next){
+router.post('/fetchEvent', verifyAdmin, function(req, res, next){
     let eventID = req.body.eventID;
     let events = db.ref("events/" + eventID);
 
