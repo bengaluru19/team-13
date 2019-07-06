@@ -696,10 +696,10 @@ h3 {
 /*============ banner_area css =============*/
 .banner_area {
   min-height: 680px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(4, 9, 30, 0.8)), to(rgba(4, 9, 30, 0.8))), url("../image/banner.jpg");
-  background: -webkit-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("../image/banner.jpg");
-  background: -o-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("../image/banner.jpg");
-  background: linear-gradient(to right, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("../image/banner.jpg");
+  background: -webkit-gradient(linear, left top, right top, from(rgba(4, 9, 30, 0.8)), to(rgba(4, 9, 30, 0.8))), url("../image/home.jpg");
+  background: -webkit-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("../image/home.jpg");
+  background: -o-linear-gradient(left, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("../image/home.jpg");
+  background: linear-gradient(to right, rgba(4, 9, 30, 0.8), rgba(4, 9, 30, 0.8)), url("../image/home.jpg");
   background-size: cover;
 }
 
