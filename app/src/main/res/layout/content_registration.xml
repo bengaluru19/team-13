@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="vola.systers.com.android.activities.RegistrationActivity"
+    tools:showIn="@layout/activity_registration">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:textAlignment="center"
+            android:id="@+id/coordinator_layout">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+             <TextView
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:textAlignment="center"
+                 android:id="@+id/title"
+                 android:padding="@dimen/textviewMargin"
+                 android:textSize="@dimen/textViewHeading"
+                 android:textColor="@color/text_black"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/formLabelWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/emailLabel"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:textSize="@dimen/font_headings"
+                    android:text="@string/email"
+                    android:textColor="@color/text_black"/>
+
+                <EditText
+                    android:id="@+id/input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/formLabelWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fnameLabel"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:textSize="@dimen/font_headings"
+                    android:text="@string/fname"
+                    android:textColor="@color/text_black"/>
+
+                <EditText android:id="@+id/input_fname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/formLabelWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lnameLabel"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:textSize="@dimen/font_headings"
+                    android:text="@string/lname"
+                    android:textColor="@color/text_black"/>
+
+                <EditText android:id="@+id/input_lname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/formLabelWidth"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/affiliationsLabel"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:textSize="@dimen/font_headings"
+                    android:text="@string/affiliations"
+                    android:textColor="@color/text_black"/>
+
+                <EditText android:id="@+id/input_affiliations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_top"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:id="@+id/type"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:textSize="@dimen/font_headings"
+                    android:text="@string/attendee_type"
+                    android:textColor="@color/text_black"/>
+
+                <RadioGroup
+                    android:id="@+id/radioAttendee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/radioStudent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/student"
+                        android:checked="true" />
+
+                    <RadioButton
+                        android:id="@+id/radioVolunteer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/volunteer" />
+
+                    <RadioButton
+                        android:id="@+id/radioOthers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/others" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textviewMargin"
+                android:padding="@dimen/padding_view"
+                android:textSize="@dimen/textViewContent"
+                android:textColor="@color/text_white"
+                android:background="@color/colorPrimary"
+                android:onClick="registerToEvent"
+                android:text="@string/register_event"/>
+
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

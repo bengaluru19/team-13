@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_events"
+            android:icon="@mipmap/event"
+            android:title="@string/nav_events" />
+        <item
+            android:id="@+id/nav_starred_events"
+            android:icon="@mipmap/star"
+            android:title="@string/nav_starred_events" />
+        <item
+            android:id="@+id/nav_schedule"
+            android:icon="@mipmap/schedule"
+            android:title="@string/nav_schedule" />
+
+    </group>
+
+    <item android:title="@string/other">
+        <menu>
+            <item
+                android:id="@+id/nav_profile"
+                android:title="@string/nav_profile" />
+            <item
+                android:id="@+id/nav_share"
+                android:title="@string/nav_share" />
+        </menu>
+    </item>
+
+</menu>

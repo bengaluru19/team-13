@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vola.systers.com.android.activities.SignUpActivity">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:textAlignment="center"
+        android:id="@+id/coordinator_layout">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="@dimen/dimenMarginLeft"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/heightImageLogo"
+                    android:id="@+id/logo"
+                    android:src="@mipmap/logo"/>
+
+                <EditText android:id="@+id/input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/email_hint"
+                    android:maxLines="1"/>
+
+                <EditText
+                    android:id="@+id/input_fname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fname_hint"
+                    android:maxLines="1"/>
+
+                <EditText
+                    android:id="@+id/input_lname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lname_hint"
+                    android:maxLines="1"/>
+
+                <EditText
+                    android:id="@+id/input_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password_hint"
+                    android:inputType="textPassword" />
+
+                <EditText android:id="@+id/input_cnf_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:hint="@string/cnf_password_hint"/>
+
+                <Button
+                    android:id="@+id/btn_signup"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/buttonMargin"
+                    android:layout_marginBottom="@dimen/buttonMargin"
+                    android:padding="@dimen/padding"
+                    android:textSize="@dimen/textSize"
+                    android:onClick="onClick"
+                    android:textColor="@color/text_white"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/signup"/>
+
+                <TextView android:id="@+id/link_login"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/padding_top"
+                    android:text="@string/link_login"
+                    android:gravity="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textSize"/>
+
+                <TextView android:id="@+id/link_skip"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/textviewMargin"
+                    android:text="@string/skip"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/tangerine"
+                    android:textSize="@dimen/textSize"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="vola.systers.com.android.activities.EventDetailViewActivity"
+    tools:showIn="@layout/activity_event_detail_view">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:textAlignment="center"
+        android:id="@+id/coordinator_layout">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/event_name"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/padding"
+                        android:paddingTop="@dimen/padding_view"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/textViewHeading"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/event_description"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/event_name"
+                        android:padding="@dimen/padding_view"
+                        android:paddingBottom="@dimen/padding"
+                        android:textAlignment="center"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/textViewContent"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/event"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/event_description"
+                        android:layout_marginLeft="@dimen/padding_view"
+                        android:gravity="left"
+                        android:text="Event Details"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/textViewContent"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/card_view_event"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_view"
+                        android:layout_marginRight="@dimen/padding_view"
+                        card_view:cardCornerRadius="@dimen/padding"
+                        card_view:cardElevation="@dimen/padding_bottom"
+                        card_view:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="left">
+
+                            <TextView
+                                android:id="@+id/event_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/event"
+                                android:padding="8dp"
+                                android:gravity="left"
+                                android:paddingBottom="@dimen/padding"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_black"
+                                android:textSize="@dimen/textViewContent"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:id="@+id/event_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/event_date"
+                                android:padding="@dimen/padding_view"
+                                android:paddingBottom="1dip"
+                                android:gravity="left"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_black"
+                                android:textSize="@dimen/textViewContent"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:id="@+id/event_timeZone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/event_time"
+                                android:padding="@dimen/padding_view"
+                                android:paddingBottom="@dimen/padding"
+                                android:textAlignment="center"
+                                android:gravity="left"
+                                android:textColor="@color/text_black"
+                                android:textSize="@dimen/textViewContent"
+                                android:textStyle="normal" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/event_description"
+                        android:layout_marginLeft="@dimen/padding_view"
+                        android:gravity="left"
+                        android:text="Location Details"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/textViewContent"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/card_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_view"
+                        android:layout_marginRight="@dimen/padding_view"
+                        card_view:cardCornerRadius="@dimen/padding"
+                        card_view:cardElevation="@dimen/padding_bottom"
+                        card_view:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="left">
+
+                            <TextView
+                                android:id="@+id/event_location_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/event_description"
+                                android:padding="8dp"
+                                android:gravity="left"
+                                android:paddingBottom="@dimen/padding"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_black"
+                                android:textSize="@dimen/textViewContent"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:id="@+id/event_location_city"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/event_location_name"
+                                android:padding="@dimen/padding_view"
+                                android:paddingBottom="1dip"
+                                android:gravity="left"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_black"
+                                android:textSize="@dimen/textViewContent"
+                                android:textStyle="normal" />
+
+                            <TextView
+                                android:id="@+id/event_location_state"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/event_location_city"
+                                android:padding="@dimen/padding_view"
+                                android:paddingBottom="@dimen/padding"
+                                android:textAlignment="center"
+                                android:gravity="left"
+                                android:textColor="@color/text_black"
+                                android:textSize="@dimen/textViewContent"
+                                android:textStyle="normal" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_register"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_left"
+                            android:layout_marginTop="@dimen/margin_left"
+                            android:background="@color/colorPrimary"
+                            android:padding="@dimen/padding_view"
+                            android:text="@string/register"
+                            android:textColor="@color/text_white"
+                            android:textSize="@dimen/textViewContent" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </ScrollView>
+
+    </ScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</android.support.constraint.ConstraintLayout>

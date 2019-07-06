@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="vola.systers.com.android.activities.ProfileActivity"
+    tools:showIn="@layout/activity_profile">
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:textAlignment="center"
+        android:id="@+id/coordinator_layout">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="8dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp">
+
+            <TextView
+                android:id="@+id/profile"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimenLayoutMargin"
+                android:gravity="center"
+                android:text="@string/profile"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textViewHeading"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/emailLabel"
+                    android:layout_width="@dimen/formLabelWidth"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:text="@string/email"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/font_headings" />
+
+                <EditText
+                    android:id="@+id/input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fnameLabel"
+                    android:layout_width="@dimen/formLabelWidth"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:text="@string/fname"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/font_headings" />
+
+                <EditText
+                    android:id="@+id/input_fname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lnameLabel"
+                    android:layout_width="@dimen/formLabelWidth"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:text="@string/lname"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/font_headings" />
+
+                <EditText
+                    android:id="@+id/input_lname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/roleTitle"
+                    android:layout_width="@dimen/formLabelWidth"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:text="@string/roleTitle"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/font_headings" />
+
+                <EditText
+                    android:id="@+id/role"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/affiliationsLabel"
+                    android:layout_width="@dimen/formLabelWidth"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:text="@string/affiliations"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/font_headings" />
+
+                <EditText
+                    android:id="@+id/input_affiliations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimenMarginTop"
+                android:textSize="@dimen/textSize"
+                android:textColor="@color/text_white"
+                android:background="@color/colorPrimary"
+                android:text="@string/logout"/>
+
+            <Button
+                android:id="@+id/saveProfile"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimenMarginTop"
+                android:layout_marginRight="@dimen/dimenMarginTop"
+                android:layout_marginTop="@dimen/dimenMarginTop"
+                android:layout_marginBottom="@dimen/padding"
+                android:visibility="gone"
+                android:textSize="@dimen/textSize"
+                android:textColor="@color/text_white"
+                android:background="@color/tangerine"
+                android:text="@string/save"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="vola.systers.com.android.activities.EventDetailViewActivity"
+    tools:showIn="@layout/activity_event_detail_view">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:textAlignment="center"
+        android:id="@+id/coordinator_layout">
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:fb="http://schemas.android.com/apk/res-auto"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fitsSystemWindows="true">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/dimenLayoutMargin"
+                tools:context=".SignInActivity" >
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/heightImageLogo"
+                    android:id="@+id/logo"
+                    android:src="@mipmap/logo"/>
+
+                <Button
+                    android:id="@+id/btn_sign_in_google"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimenMarginBottom"
+                    android:layout_marginLeft="@dimen/dimenMarginLeft"
+                    android:layout_marginRight="@dimen/dimenMarginRight"
+                    android:background="@color/google_signin"
+                    android:text="@string/btn_signin_with_google"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/text_white"
+                    android:textStyle="bold"
+                    android:drawableLeft="@drawable/google_plus"/>
+
+
+                <com.facebook.login.widget.LoginButton
+                    xmlns:fb="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/btn_fb_sign_in"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimenMarginLeft"
+                    android:layout_marginBottom="@dimen/dimenMarginBottom"
+                    android:layout_marginRight="@dimen/dimenMarginRight"
+                    android:paddingTop="@dimen/paddingFbButton"
+                    android:paddingBottom="@dimen/paddingFbButton"
+                    fb:com_facebook_login_text="@string/btn_signin_with_facebook"
+                    fb:com_facebook_logout_text="@string/logout"
+                    style="@style/FacebookLoginButton" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/light_grey"
+                    android:layout_marginBottom="@dimen/dimenMarginBottom"
+                    />
+
+                <EditText android:id="@+id/input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/hint_email" />
+
+
+                <EditText android:id="@+id/input_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:hint="@string/hint_password"/>
+
+
+                <Button
+                    android:id="@+id/btn_login"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimenMarginTop"
+                    android:layout_marginBottom="@dimen/dimenMarginBottom"
+                    android:padding="@dimen/padding"
+                    android:textSize="@dimen/textSize"
+                    android:textColor="@color/text_white"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sign_in_button_text"/>
+
+                <TextView android:id="@+id/link_signup"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/padding_bottom"
+                    android:text="@string/signup_text"
+                    android:gravity="center"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textSize"/>
+
+                <TextView android:id="@+id/link_skip"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimenMarginBottom"
+                    android:text="@string/skip_login"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/tangerine"
+                    android:textSize="@dimen/font"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</android.support.constraint.ConstraintLayout>
