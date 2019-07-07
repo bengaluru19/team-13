@@ -347,6 +347,12 @@
             contentType: 'application/json',
             success: function (data) {
                 console.log(data);
+                if (data.code && data.code === 1) {
+                    alert(data.message);
+                }
+                else {
+                    alert(data.message);
+                }
             },
             data: data
         });

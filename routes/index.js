@@ -126,20 +126,20 @@ router.post('/createEvent', function(req, res, next){
     let ref = db.ref("events");
     console.log(req.body);
 
-    // ref.once("value", function(snapshot) {
-    //   console.log(snapshot.val());
-    //   res.send({
-    //      code:0,
-    //      message:"Event has been successfully created!"
-    //   });
-    // }, function (errorObject) {
-    //     console.log("The read failed: " + errorObject.code);
-    //     res.send({
-    //         code:1,
-    //         message:"Error while creating event, please try again",
-    //         error:errorObject.code
-    //     });
-    // });
+    ref.once("value", function(snapshot) {
+      console.log(snapshot.val());
+      res.send({
+         code:0,
+         message:"Event has been successfully created!"
+      });
+    }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+        res.send({
+            code:1,
+            message:"Error while creating event, please try again",
+            error:errorObject.code
+        });
+    });
 
     let enddate = req.body.enddate;
     let endtime = req.body.endtime;
