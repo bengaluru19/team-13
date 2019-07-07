@@ -5,3 +5,5 @@
 2. Volutnteer SingIn
 3. Event List display and regisration for volunteering for specific event
 
+There is also a share options  to share the application through mail intent.
+
