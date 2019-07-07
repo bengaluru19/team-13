@@ -3,7 +3,7 @@ var router = express.Router();
 var admin = require("firebase-admin");
 var path = require("path");
 
-var serviceAccount = require("../codeforgood-team13.json");
+var serviceAccount = require("../volu-ab75c-firebase-adminsdk-erg10-ac885eb507.json");
 console.log("In Directory: ",__dirname);
 require('dotenv').config({path: __dirname + '/../.env'});
 
@@ -57,6 +57,11 @@ router.get('/volunteerList', verifyAdmin, function(req, res, next) {
 /* GET Volunteer View page. */
 router.get('/volunteerView', function(req, res, next) {
     res.render('volunteerView', { title: 'Express' });
+});
+
+/* GET Create Event page. */
+router.get('/createEvent', function(req, res, next) {
+    res.render('createEvent', { title: 'Express' });
 });
 
 //Admin Signup
@@ -273,7 +278,7 @@ router.post('/fetchVolunteer', function(req, res, next){
                     });
                     res.send({
                         code : 0,
-                        message : "Volunteer has attended no events",
+                        message : "Volunteer's event details have been successfully fetched",
                         data: {volunteerID:result}
                     });
                 }

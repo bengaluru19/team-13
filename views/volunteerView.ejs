@@ -34,10 +34,10 @@
                     <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>9980452947</p>
                     <hr>
 
-                    <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>SmileMeter</b></p>
+                    <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Number of hours</b></p>
 
                     <div class="w3-light-grey w3-round-xlarge w3-small">
-                        <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:50%">50</div>
+                        <div class="w3-container w3-center w3-round-xlarge w3-teal" id="hours_complete" style="width:50%">50</div>
                     </div>
 
                     <br>
@@ -95,6 +95,8 @@
                     v_details = data.data[key]
                     document.getElementById("v_fname").innerHTML = v_details.first_name;
                     document.getElementById("v_lname").innerHTML = v_details.last_name;
+                    document.getElementById('hours_complete').innerHTML = v_details.total_hours;
+                    document.getElementById('hours_complete').style = "width:" + (v_details.total_hours/30).toString() + "%";
                     var keys = Object.keys(v_details.events);
                     keys.forEach(function(key){
                         var name = document.createElement('h5');
