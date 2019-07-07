@@ -44,9 +44,19 @@ router.get('/login', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET Login page. */
+/* GET HOME page. */
 router.get('/home', verifyAdmin, function(req, res, next) {
-    res.render('error', { title: 'Express' });
+    res.render('home', { title: 'Express' });
+});
+
+/* GET search volunteer page. */
+router.get('/volunteerList', verifyAdmin, function(req, res, next) {
+    res.render('search-volunteer', { title: 'Express' });
+});
+
+/* GET Volunteer View page. */
+router.get('/volunteerView', function(req, res, next) {
+    res.render('volunteerView', { title: 'Express' });
 });
 
 //Admin Signup
@@ -208,6 +218,92 @@ router.post('/fetchEvent', verifyAdmin, function(req, res, next){
         res.send({
             code : 1,
             message : "Fatal error fetching event details",
+            error: errorObject.code
+        });
+    });
+});
+
+router.post('/fetchVolunteer', function(req, res, next){
+    let volunteerID = req.body.volunteerID;
+    let volunteer = db.ref("users/" + volunteerID);
+    let result = {};
+
+    volunteer.on("value", function(snapshot) {
+        if(snapshot.val()) {
+            let volunteers = Object.keys(snapshot.val());
+            volunteers.forEach(function(volunteer){
+                let keys = Object.keys(snapshot.val()[volunteer]);
+                keys.forEach(function(key) {
+                    result[key] = snapshot.val()[volunteer][key];
+                });
+            });
+            result["events"] = {};
+            let volunteer_events = db.ref("event_registrations/" + volunteerID);
+            volunteer_events.on("value", function(volunteer_event_snapshot) {
+                if(volunteer_event_snapshot.val()){
+                    let volunteer_event = Object.keys(volunteer_event_snapshot.val());
+                    volunteer_event.forEach(function(volunteer){
+                        let keys = Object.keys(volunteer_event_snapshot.val()[volunteer]);
+                        keys.forEach(function(key) {
+                            let events = db.ref("events/" + key);
+                            events.on("value", function(events_snapshot) {
+                                if(events_snapshot.val()){
+                                    let event_details = Object.keys(events_snapshot.val());
+                                    result["events"][key] = {};
+                                    event_details.forEach(function(detail){
+                                        result["events"][key][detail] = events_snapshot.val()[detail];
+                                        // console.log(result["events"][key]);
+                                    });
+                                    console.log({
+                                        code: 0,
+                                        message: "Volunteer's event details have been successfully fetched",
+                                        data: {volunteerID: result}
+                                    });
+                                }
+                                else{
+                                    console.log({
+                                        code: 0,
+                                        message: "Volunteer has attended no events/invalid data",
+                                        data: {volunteerID: result}
+                                    });
+                                }
+                            });
+                            // result[key] = volunteer_event_snapshot.val()[volunteer][key];
+                        });
+                    });
+                    res.send({
+                        code : 0,
+                        message : "Volunteer has attended no events",
+                        data: {volunteerID:result}
+                    });
+                }
+                else{
+                    console.log({
+                        code : 0,
+                        message : "Volunteer has attended no events",
+                        data: {volunteerID:result}
+                    });
+                }
+            }, function (errorObject) {
+                console.log("The read failed: " + errorObject.code);
+                res.send({
+                    code : 1,
+                    message : "Fatal error fetching volunteer details",
+                    error: errorObject.code
+                });
+            });
+        }
+        else{
+            res.send({
+                code : 1,
+                message : "Error fetching volunteer details, please check volunteer ID"
+            });
+        }
+    }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+        res.send({
+            code : 1,
+            message : "Fatal error fetching volunteer details",
             error: errorObject.code
         });
     });

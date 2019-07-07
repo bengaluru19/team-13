@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<title>Team13 | Volunteer Report</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+
+        <!-- Left Column -->
+        <div class="w3-third" style="border-radius: 10%">
+
+            <div class="w3-white w3-text-grey w3-card-4">
+                <div class="w3-display-container">
+
+                    <div class="w3-display-bottomleft w3-container w3-text-black">
+                    </div>
+                </div>
+                <div class="w3-container">
+                    <h2 id="v_fname"></h2>
+                    <p id="v_lname"></p>
+                    <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Bangalore</p>
+                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>vrkarthik@gmail.com</p>
+                    <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>9980452947</p>
+                    <hr>
+
+                    <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>SmileMeter</b></p>
+
+                    <div class="w3-light-grey w3-round-xlarge w3-small">
+                        <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:50%">50</div>
+                    </div>
+
+                    <br>
+
+                </div>
+            </div><br>
+
+            <!-- End Left Column -->
+        </div>
+
+        <!-- Right Column -->
+        <div class="w3-twothird">
+
+            <div class="w3-container w3-card w3-white w3-margin-bottom">
+                <h2 class="w3-text-grey w3-padding-16" id="events_view">Volunteered Events</h2>
+            </div>
+
+            <div class="w3-container w3-card w3-white">
+
+            </div>
+
+            <!-- End Right Column -->
+        </div>
+
+        <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+</div>
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+
+<script>
+    var urlParams = new URLSearchParams(window.location.search);
+    var values = urlParams.values();
+    var volunteerID = '';
+    for(value of values) {
+        volunteerID = value;
+    }
+    var data = JSON.stringify({
+        volunteerID: volunteerID
+    });
+    $.ajax({
+        url: '/fetchVolunteer',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+            console.log(data);
+            if (data.code && data.code === 1) {
+                alert(data.message);
+            }
+            else {
+                var keys = Object.keys(data.data);
+                keys.forEach(function(key){
+                    v_details = data.data[key]
+                    document.getElementById("v_fname").innerHTML = v_details.first_name;
+                    document.getElementById("v_lname").innerHTML = v_details.last_name;
+                    var keys = Object.keys(v_details.events);
+                    keys.forEach(function(key){
+                        var name = document.createElement('h5');
+                        name.innerHTML = v_details.events[key].name;
+
+                        var duration = document.createElement('h6');
+                        duration.className = 'w3-text-teal';
+                        duration.innerHTML = '';
+
+                        var i_duration = document.createElement('i');
+                        i_duration.className = 'fa fa-calendar fa-fw w3-margin-right';
+                        duration.appendChild(i_duration)
+                        duration.innerHTML += v_details.events[key].startdate + " to " + v_details.events[key].enddate;
+
+                        var description = document.createElement('p');
+                        description.style = "font-size:16px;"
+                        description.innerHTML = v_details.events[key].description;
+
+                        var hr = document.createElement('hr');
+
+                        var container = document.createElement('div');
+                        container.className = 'w3-container';
+                        container.appendChild(name);
+                        container.appendChild(duration);
+                        container.appendChild(description);
+                        container.appendChild(hr);
+                        document.getElementById('events_view').appendChild(container);
+                    });
+                });
+            }
+        },
+        data: data
+    });
+</script>
+
+</body>
+</html>
