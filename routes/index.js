@@ -55,12 +55,17 @@ router.get('/volunteerList', verifyAdmin, function(req, res, next) {
 });
 
 /* GET Volunteer View page. */
-router.get('/volunteerView', function(req, res, next) {
+router.get('/volunteerView',  verifyAdmin, function(req, res, next) {
     res.render('volunteerView', { title: 'Express' });
 });
 
 /* GET Create Event page. */
-router.get('/createEvent', function(req, res, next) {
+router.get('/eventsView',  verifyAdmin, function(req, res, next) {
+    res.render('eventsView', { title: 'Express' });
+});
+
+/* GET Create Event page. */
+router.get('/createEvent',  function(req, res, next) {
     res.render('createEvent', { title: 'Express' });
 });
 
@@ -117,40 +122,41 @@ router.post('/login', function(req, res){
 
 });
 
-router.post('/createEvent', verifyAdmin, function(req, res, next){
+router.post('/createEvent', function(req, res, next){
     let ref = db.ref("events");
+    console.log(req.body);
 
-    ref.once("value", function(snapshot) {
-      console.log(snapshot.val());
-      res.send({
-         code:0,
-         message:"Event has been successfully created!"
-      });
-    }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-        res.send({
-            code:1,
-            message:"Error while creating event, please try again",
-            error:errorObject.code
-        });
-    });
+    // ref.once("value", function(snapshot) {
+    //   console.log(snapshot.val());
+    //   res.send({
+    //      code:0,
+    //      message:"Event has been successfully created!"
+    //   });
+    // }, function (errorObject) {
+    //     console.log("The read failed: " + errorObject.code);
+    //     res.send({
+    //         code:1,
+    //         message:"Error while creating event, please try again",
+    //         error:errorObject.code
+    //     });
+    // });
 
     let enddate = req.body.enddate;
     let endtime = req.body.endtime;
     let description = req.body.description;
     let location = {
-        city : req.body.location.city,
-        country : req.body.location.country,
-        latitude : req.body.location.latitude,
-        longitude : req.body.location.longitude,
-        name : req.body.location.name
+        city : req.body.loc_city,
+        country : req.body.loc_country,
+        latitude : req.body.latitude,
+        longitude : req.body.longitude,
+        name : req.body.loc_name
     };
     let name = req.body.name;
     let needs_volunteers = true;
     let startdate = req.body.startdate;
     let starttime = req.body.starttime;
 
-    ref.push({
+    ref.push().set({
         enddate : enddate,
         endtime : endtime,
         description : description,
