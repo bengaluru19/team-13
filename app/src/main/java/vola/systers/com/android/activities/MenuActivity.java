@@ -2,6 +2,7 @@ package vola.systers.com.android.activities;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -216,6 +217,11 @@ public class MenuActivity extends AppCompatActivity {
                     case R.id.nav_share:
                         // launch new intent instead of loading fragment
                         // TODO : Share APP
+                        Intent testIntent = new Intent(Intent.ACTION_VIEW);
+                        Uri data = Uri.parse("mailto:?subject=" + "Join Our NGO community by downloading this app:" + "&body=" + "join our community by downloading this app https://play.google.com/store/apps/details?id=app.yulu.bike&hl=en " + "&to=" + "Enter email..");
+                        testIntent.setData(data);
+                        startActivity(testIntent);
+                        break;
 
                     default:
                         navItemIndex = 0;

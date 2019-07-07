@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private String emailId, userToken,displayName;
     private EditText fname,lname,email,affiliations,role;
+    private TextView credit_point;
     private CoordinatorLayout coordinatorLayout;
     private Button logout,saveProfile;
     private PrefManager prefManager;
@@ -67,10 +70,31 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         if (user != null) {
+
+
             emailId = user.getEmail();
             userToken = user.getUid();
             displayName = user.getDisplayName();
+
+            credit_point = findViewById(R.id.credit_points);
+
+            FirebaseDatabase.getInstance().getReference().child("users").child(userToken).child("total_hours").addListenerForSingleValueEvent(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            long credit = dataSnapshot.getValue(Long.class);
+                            credit_point.setText("   "+credit);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    }
+            );
+
 
             fname = (EditText) findViewById(R.id.input_fname);
             lname = (EditText) findViewById(R.id.input_lname);

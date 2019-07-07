@@ -43,6 +43,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import vola.systers.com.android.R;
 import vola.systers.com.android.manager.PrefManager;
@@ -74,6 +75,8 @@ public class SignInActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
         prefManager = new PrefManager(this);
         verifyingAuthProgressDialog = new ProgressDialog(SignInActivity.this);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
