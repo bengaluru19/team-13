@@ -16,59 +16,72 @@
         <!-- main css -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+
+        <style>
+        form.searchbar input[type=text] {
+            padding: 10px;
+            font-size: 17px;
+            border: 1px solid grey;
+            float: left;
+            width: 80%;
+            background: #f1f1f1;
+          }
+          
+          form.searchbar button {
+            float: left;
+            width: 20%;
+            padding: 10px;
+            background: #2196F3;
+            color: white;
+            font-size: 17px;
+            border: 1px solid grey;
+            border-left: none;
+            cursor: pointer;
+          }
+          
+          form.searchbar button:hover {
+            background: #0b7dda;
+          }
+          
+          form.searchbar::after {
+            content: "";
+            clear: both;
+            display: table;
+          }
+          </style>
+
     </head>
     <body>
         <!--================Header Area =================-->
         <header class="header_area">
-            <div class="header_top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-5">
-                            <ul class="nav social_icon">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-6 col-7">
-                            <div class="top_btn d-flex justify-content-end">
-                                <a href="#">My Account</a>
-                                <a href="#">Donate Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html"><img src="image/Logo.png" alt=""></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <a class="navbar-brand logo_h" href="home.html"><img src="image/logo.png" alt="" style="width: 100px; height: 90px;"></a>
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>
+                    </button> -->
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li> 
-                            <li class="nav-item"><a class="nav-link" href="ministries.html">Minisrtries</a></li>
-                            <li class="nav-item"><a class="nav-link" href="sermons.html">Sermons</a></li>
-                            <li class="nav-item submenu dropdown active">
+                            <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Event</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="event-details.html">Event Details</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="event.html">View All</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="event-create.html">Create</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="event-update.html">Update</a></li>
                                 </ul>
                             </li> 
                             <li class="nav-item submenu dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Report</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="donation.html">Donation</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="about-us.html">Events</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="donation.html">Volunteers</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="gallery.html">General Query</a></li>
                                 </ul>
                             </li> 
                             <li class="nav-item submenu dropdown">
@@ -102,164 +115,54 @@
                 </div>
             </div>
         </section>
+        <br><br>
         <!--================Breadcrumb Area =================-->
-       
+
+        <!-- Search bar -->
+        <form class="searchbar" action="#" style="margin:auto;max-width:600px">
+            <input type="text" placeholder="Search for event" name="search2">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+
+        <br><br>
+
+
+        <!-- end search bar -->
+    
         <!--================Event Date Area =================-->
-        <section class="event_date_area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 d_flex">
-                        <div class="evet_location flex">
-                            <h3>Spreading the faith to all</h3>
-                            <p><span class="lnr lnr-calendar-full"></span>5th may, 2018</p>
-                            <p><span class="lnr lnr-clock"></span>Saturday, 09.00 am to 05.00 pm</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 event_time">
-                        <h4>Our Next Event Starts in</h4>
-                        <div id="timer" class="timer">
-                            <div class="timer__section days">
-                                <div class="timer__number"></div>
-                                <div class="timer__label">days</div>
-                            </div>
-                            <div class="timer__section hours">
-                                <div class="timer__number"></div>
-                                <div class="timer__label">hours</div>
-                            </div>
-                            <div class="timer__section minutes">
-                                <div class="timer__number"></div>
-                                <div class="timer__label">Minutes</div>
-                            </div>
-                            <div class="timer__section seconds">
-                                <div class="timer__number"></div>
-                                <div class="timer__label">seconds</div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="card" style="background: cyan;border-radius:40px;">
+                <div class="card-body">
+                            <h2 class="card-title">Notebook Distribution</h2>
+                            <h4><span class="lnr lnr-calendar-full"></span>5th may, 2018</h4>
+                            <h4><span class="lnr lnr-clock"></span>Saturday, 09.00 am to 05.00 pm</h4>
+                            <h4>Bangalore</p>
                 </div>
-            </div>
-        </section>
-        <!--================Event Date Area =================-->
-        
+                <div>
+                  <a href="edit_event.html" class="card-link"><button type="button" class="btn">UPDATE</button></a>
+                  <a href="report_event.html" class="card-link"><button type="button" class="btn">REPORT</button></a>
+                  <a href="delete_event.html" class="card-link"><button type="button" class="btn">DELETE</button></a>
+                </div>
+        </div>
         
         <!--================Event Blog Area=================-->
-        <section class="event_blog_area section_gap">
-            <div class="container">
-                <div class="row event_two">
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="event_post">
-                            <img src="image/blog1.jpg" alt="">
-                            <a href="event-details.html"><h2 class="event_title">Spreading Peace to world</h2></a>
-                            <ul class="list_style sermons_category event_category">
-                                <li><i class="lnr lnr-user"></i>Saturday, 5th may, 2018</li>
-                                <li><i class="lnr lnr-apartment"></i>Rocky beach Church</li>
-                                <li><i class="lnr lnr-location"></i>Santa monica, Los Angeles, USA</li>
-                            </ul>
-                            <a href="#" class="btn_hover">View Details</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="event_post">
-                            <img src="image/blog2.jpg" alt="">
-                            <a href="event-details.html"><h2 class="event_title">Spread Happyness to world</h2></a>
-                            <ul class="list_style sermons_category event_category">
-                                <li><i class="lnr lnr-user"></i>Saturday, 5th may, 2018</li>
-                                <li><i class="lnr lnr-apartment"></i>Rocky beach Church</li>
-                                <li><i class="lnr lnr-location"></i>Santa monica, Los Angeles, USA</li>
-                            </ul>
-                            <a href="#" class="btn_hover">View Details</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="event_post">
-                            <img src="image/blog3.jpg" alt="">
-                            <a href="event-details.html"><h2 class="event_title">Spreading Light to world</h2></a>
-                            <ul class="list_style sermons_category event_category">
-                                <li><i class="lnr lnr-user"></i>Saturday, 5th may, 2018</li>
-                                <li><i class="lnr lnr-apartment"></i>Rocky beach Church</li>
-                                <li><i class="lnr lnr-location"></i>Santa monica, Los Angeles, USA</li>
-                            </ul>
-                            <a href="#" class="btn_hover">View Details</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="event_post">
-                            <img src="image/blog1.jpg" alt="">
-                            <a href="event-details.html"><h2 class="event_title">Spreading Peace to world</h2></a>
-                            <ul class="list_style sermons_category event_category">
-                                <li><i class="lnr lnr-user"></i>Saturday, 5th may, 2018</li>
-                                <li><i class="lnr lnr-apartment"></i>Rocky beach Church</li>
-                                <li><i class="lnr lnr-location"></i>Santa monica, Los Angeles, USA</li>
-                            </ul>
-                            <a href="#" class="btn_hover">View Details</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="event_post">
-                            <img src="image/blog2.jpg" alt="">
-                            <a href="event-details.html"><h2 class="event_title">Spread Happyness to world</h2></a>
-                            <ul class="list_style sermons_category event_category">
-                                <li><i class="lnr lnr-user"></i>Saturday, 5th may, 2018</li>
-                                <li><i class="lnr lnr-apartment"></i>Rocky beach Church</li>
-                                <li><i class="lnr lnr-location"></i>Santa monica, Los Angeles, USA</li>
-                            </ul>
-                            <a href="#" class="btn_hover">View Details</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="event_post">
-                            <img src="image/blog3.jpg" alt="">
-                            <a href="event-details.html"><h2 class="event_title">Spreading Light to world</h2></a>
-                            <ul class="list_style sermons_category event_category">
-                                <li><i class="lnr lnr-user"></i>Saturday, 5th may, 2018</li>
-                                <li><i class="lnr lnr-apartment"></i>Rocky beach Church</li>
-                                <li><i class="lnr lnr-location"></i>Santa monica, Los Angeles, USA</li>
-                            </ul>
-                            <a href="#" class="btn_hover">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+       
         <!--================Blog Area=================-->
         
-        <!--================ start footer Area  =================-->	
+        <!--================ start footer Area  =================-->
+        <br><br>	
         <footer class="footer-area section_gap">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3  col-md-6 col-sm-6">
+                    <div class="col-lg-4  col-md-6 col-sm-6">
                         <div class="single-footer-widget">
                             <h6 class="footer_title">About Agency</h6>
-                            <p>The world has become so fast paced that people don’t want to stand by reading a page of information, they would much rather look at a presentation and understand the message. It has come to a point </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h6 class="footer_title">Navigation Links</h6>
-                            <div class="row">
-                                <div class="col-4">
-                                    <ul class="list_style">
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">Feature</a></li>
-                                        <li><a href="#">Services</a></li>
-                                        <li><a href="#">Portfolio</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-4">
-                                    <ul class="list_style">
-                                        <li><a href="#">Team</a></li>
-                                        <li><a href="#">Pricing</a></li>
-                                        <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                    </ul>
-                                </div>										
-                            </div>							
+                            <p>Creating a positive impact in the lives of children, through health and education initiatives, empowering them. </p>
                         </div>
                     </div>							
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-footer-widget">
                             <h6 class="footer_title">Newsletter</h6>
-                            <p>For business professionals caught between high OEM price and mediocre print and graphic output, </p>		
+                            		
                             <div id="mc_embed_signup">
                                 <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
                                     <div class="input-group d-flex flex-row">
@@ -271,7 +174,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="single-footer-widget instafeed">
                             <h6 class="footer_title">InstaFeed</h6>
                             <ul class="list_style instafeed d-flex flex-wrap">
@@ -287,18 +190,7 @@
                         </div>
                     </div>						
                 </div>
-                <div class="border_line"></div>
-                <div class="row footer-bottom d-flex justify-content-between align-items-center">
-                    <p class="col-lg-8 col-sm-8 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                    <div class="col-lg-4 col-sm-4 footer-social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                    </div>
-                </div>
+                
             </div>
         </footer>
 		<!--================ End footer Area  =================-->
@@ -318,4 +210,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="js/stellar.js"></script>
         <script src="js/custom.js"></script>
     </body>
+
+    <script>
+        var x = document.getElementsByClassName("card-title");
+        var items = json.items;
+        for(var i = 0; i < items.length; i++) {
+            var h5 = document.createElement("h5");
+            h5.innerHTML = items[i].title;
+            news.appendChild(h5);
+            var p = document.createElement("p");
+            p.innerHTML = items[i].author;
+            news.appendChild(p);
+
+}
+    </script>
 </html>
