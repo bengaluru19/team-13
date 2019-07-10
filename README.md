@@ -21,20 +21,23 @@
 }
 </pre>
 <p>Possible returns from the endpoint</p>
-<pre>
-{
-   code:0,
-   message:"Event has been successfully created!"
-}
-</pre>
+<ul>
+	<li>Event Successfully Created (code = 0)</li>
+		<pre>
+		{
+		   code:0,
+		   message:"Event has been successfully created!"
+		}
+		</pre>
 
-<pre>
-{
-    code:1,
-    message:"Error while creating event, please try again",
-    error:errorObject.code
-}
-</pre>
+	<li>Error while creating event, (code = 1, error = Error code returned by Firebase)</li> 
+		<pre>
+		{
+		    code:1,
+		    message:"Error while creating event, please try again",
+		    error:errorObject.code
+		}
+		</pre>
 
 <h2>Delete Event</h2>
 <p>The following is a sample call to the endpoint</p>
