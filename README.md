@@ -4,17 +4,17 @@
 <p>The following is a sample call to the endpoint</p>
 <pre>
 {
-      "description" : "This is a value added evernt...",
+      "description" : "Undertaking the painting of the outer school walls",
       "enddate" : "13-10-2019",
       "endtime" : "1:00",
       "location" : {
-        "city" : "Blr",
+        "city" : "Bangalore",
         "country" : "India",
         "latitude" : 12.934135,
         "longitude" : 77.699627,
-        "name" : "blr"
+        "name" : "Mathru Jyothi School"
       },
-      "name" : "Karthik",
+      "name" : "Painting a School",
       "needs_volunteers" : true,
       "startdate" : "12-10-2019",
       "starttime" : "12:200"
