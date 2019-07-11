@@ -1,6 +1,6 @@
 # team-13 (Web Backend)[API Documentation]
 
-<h2>Create Event</h2>
+<h2>(POST) Create Event</h2>
 <p>The following is a sample call to the endpoint</p>
 <pre>
 {
@@ -41,7 +41,7 @@
 	</li>
 </ul>
 
-<h2>Delete Event</h2>
+<h2>(POST) Delete Event</h2>
 <p>The following is a sample call to the endpoint</p>
 <pre>
 {
@@ -70,7 +70,7 @@
 	</li>
 </ul>
 
-<h2>Fetch Event</h2>
+<h2>(POST) Fetch Event</h2>
 <p>The following is a sample call to the endpoint</p>
 <pre>
 {
@@ -107,4 +107,76 @@
 	</pre>
 	</li>
 </ul>
+
+<h2>(POST) Fetch All Events</h2>
+<p>The following is a sample call to the endpoint</p>
+<pre>
+Empty Post Request (Only Valid Cookie needs to be added for auth)
+</pre>
+
+<p>Possible returns from the endpoint</p>
+<ul>
+	<li>Event Successfully Fetched (code = 0, data = Fetched Event Data from Firebase)
+	<pre>
+	{
+            code : 0,
+            message : "Event details have been successfully fetched",
+            data : snapshot.val()
+        }
+	</pre>
+	</li>
+	<li>Error while fetching event, (code = 1, error = Error code returned by Firebase)
+	<pre>
+	{
+           code : 1,
+           message : "Error fetching Event details", 
+           error: errorObject.code
+        }
+	</pre>
+	</li>
+</ul>
+
+<h2>(POST) Admin Login Authentication</h2>
+<p>The following is a sample call to the endpoint</p>
+<pre>
+{
+	"user_name":"test",
+	"user_pass":"password"
+}
+</pre>
+
+<p>Possible returns from the endpoint</p>
+<ul>
+	<li>Event Successfully Fetched (code = 0, cookie value set)
+	<pre>
+	{
+	    code: 0,
+	    message: "Valid Login"
+        }
+	A cookie is sent along with this return, with the following parameters:
+	Name of Cookie: 'cookieVal'
+	Value of Cookie: "dywt8q7w980u"
+	maxAge: 90000
+	httpOnly: true
+	</pre>
+	</li>
+	<li>Invalid Username/Password, (code = 1, cookie invalidated)
+	<pre>
+	{
+	    code: 1,
+	    message: "Invalid Username/Password"
+        }
+	And Cookie is Invalidated.
+	</pre>
+	</li>
+	<li>Username does not exist in the DB, (code = 1)
+	<pre>
+	{
+	    code: 1,
+	    message: "Username does not exist in the DB"
+	}
+	</pre>
+	</li>
+</ul>
+
 
