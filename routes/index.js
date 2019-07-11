@@ -55,7 +55,7 @@ router.get('/volunteerList', verifyAdmin, function(req, res, next) {
 });
 
 /* GET Volunteer View page. */
-router.get('/volunteerView',  verifyAdmin, function(req, res, next) {
+router.get('/volunteerView', function(req, res, next) {
     res.render('volunteerView', { title: 'Express' });
 });
 
@@ -181,7 +181,8 @@ router.post('/allEvents', verifyAdmin, function(req, res, next){
         console.log("The read failed: " + errorObject.code);
         res.send({
            code : 1,
-           message : "Error fetching Event details"
+           message : "Error fetching Event details",
+           error: errorObject.code
         });
     });
 });
@@ -238,6 +239,7 @@ router.post('/fetchVolunteer', function(req, res, next){
     let volunteerID = req.body.volunteerID;
     let volunteer = db.ref("users/" + volunteerID);
     let result = {};
+    console.log(volunteerID);
 
     volunteer.on("value", function(snapshot) {
         if(snapshot.val()) {
@@ -263,7 +265,7 @@ router.post('/fetchVolunteer', function(req, res, next){
                                     result["events"][key] = {};
                                     event_details.forEach(function(detail){
                                         result["events"][key][detail] = events_snapshot.val()[detail];
-                                        // console.log(result["events"][key]);
+                                        console.log(result["events"][key]);
                                     });
                                     console.log({
                                         code: 0,
