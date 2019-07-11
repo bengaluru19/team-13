@@ -1,4 +1,4 @@
-# team-13 (Web Backend)
+# team-13 (Final Web App) [API Documentation]
 
 <h2>Create Event</h2>
 <p>The following is a sample call to the endpoint</p>
