@@ -168,7 +168,7 @@ router.post('/createEvent', function(req, res, next){
   });
 });
 
-router.post('/allEvents', verifyAdmin, function(req, res, next){
+router.post('/allEvents', function(req, res, next){
     let events = db.ref("events");
 
     events.on("value", function(snapshot) {
@@ -239,59 +239,73 @@ router.post('/fetchVolunteer', function(req, res, next){
     let volunteerID = req.body.volunteerID;
     let volunteer = db.ref("users/" + volunteerID);
     let result = {};
+    let output = {};
     console.log(volunteerID);
 
     volunteer.on("value", function(snapshot) {
         if(snapshot.val()) {
             let volunteers = Object.keys(snapshot.val());
+            console.log(snapshot.val(),volunteers);
             volunteers.forEach(function(volunteer){
-                let keys = Object.keys(snapshot.val()[volunteer]);
-                keys.forEach(function(key) {
-                    result[key] = snapshot.val()[volunteer][key];
-                });
+                    result[volunteer] = snapshot.val()[volunteer];
             });
+            // output[volunteerID] = result;
+            // res.send({data:output});
             result["events"] = {};
             let volunteer_events = db.ref("event_registrations/" + volunteerID);
             volunteer_events.on("value", function(volunteer_event_snapshot) {
                 if(volunteer_event_snapshot.val()){
-                    let volunteer_event = Object.keys(volunteer_event_snapshot.val());
-                    volunteer_event.forEach(function(volunteer){
-                        let keys = Object.keys(volunteer_event_snapshot.val()[volunteer]);
-                        keys.forEach(function(key) {
-                            let events = db.ref("events/" + key);
-                            events.on("value", function(events_snapshot) {
-                                if(events_snapshot.val()){
-                                    let event_details = Object.keys(events_snapshot.val());
-                                    result["events"][key] = {};
-                                    event_details.forEach(function(detail){
-                                        result["events"][key][detail] = events_snapshot.val()[detail];
-                                        console.log(result["events"][key]);
-                                    });
-                                    console.log({
-                                        code: 0,
-                                        message: "Volunteer's event details have been successfully fetched",
-                                        data: {volunteerID: result}
-                                    });
-                                }
-                                else{
-                                    console.log({
-                                        code: 0,
-                                        message: "Volunteer has attended no events/invalid data",
-                                        data: {volunteerID: result}
-                                    });
-                                }
+                    let promises = [];
+                    let volunteer_events = Object.keys(volunteer_event_snapshot.val());
+                    volunteer_events.forEach(function(volunteer_event){
+                        // result["events"][volunteer_event] = {};
+                        promises.push(db.ref("events/" + volunteer_event).once('value'));
+                    });
+                    Promise.all(promises).then(function(snapshots) {
+                        var favlist = snapshots.map(function(snapshot) { return snapshot.val(); });
+                        result["events"] = favlist;
+                        output[volunteerID] = result;
+                        res.send({
+                                code : 0,
+                                message : "Volunteer's event details have been successfully fetched",
+                                data: output
                             });
-                            // result[key] = volunteer_event_snapshot.val()[volunteer][key];
-                        });
+                    }).catch(function(error) {
+                        res.status(500).send(error);
                     });
-                    res.send({
-                        code : 0,
-                        message : "Volunteer's event details have been successfully fetched",
-                        data: {volunteerID:result}
-                    });
+                    // let events = db.ref("events/" + volunteer_event);
+                    // events.on("value", function(events_snapshot) {
+                    //     if(events_snapshot.val()){
+                    //         let event_details = Object.keys(events_snapshot.val());
+                    //         result["events"][volunteer_event] = {};
+                    //         event_details.forEach(function(detail){
+                    //             result["events"][volunteer_event][detail] = events_snapshot.val()[detail];
+                    //             console.log(result["events"][volunteer_event]);
+                    //         });
+                    //         // console.log({
+                    //         //     code: 0,
+                    //         //     message: "Volunteer's event details have been successfully fetched",
+                    //         //     data: {volunteerID: result}
+                    //         // });
+                    //     }
+                    //     else{
+                    //         console.log({
+                    //             code: 0,
+                    //             message: "Volunteer has attended no events/invalid data",
+                    //             data: {volunteerID: result}
+                    //         });
+                    //     }
+                    // });
+                    // output[volunteerID] = result;
+                    // res.send({
+                    //     code : 0,
+                    //     message : "Volunteer's event details have been successfully fetched",
+                    //     data: output
+                    // });
                 }
                 else{
-                    console.log({
+                    output[volunteerID] = result;
+                    res.send({
                         code : 0,
                         message : "Volunteer has attended no events",
                         data: {volunteerID:result}

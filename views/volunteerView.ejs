@@ -97,34 +97,63 @@
                     document.getElementById("v_lname").innerHTML = v_details.last_name;
                     document.getElementById('hours_complete').innerHTML = v_details.total_hours;
                     document.getElementById('hours_complete').style = "width:" + (v_details.total_hours/30).toString() + "%";
-                    var keys = Object.keys(v_details.events);
-                    keys.forEach(function(key){
-                        var name = document.createElement('h5');
-                        name.innerHTML = v_details.events[key].name;
+                    v_details.events.forEach(function(event){
+                        if(event!=null) {
+                            var name = document.createElement('h5');
+                            name.innerHTML = event.name;
 
-                        var duration = document.createElement('h6');
-                        duration.className = 'w3-text-teal';
-                        duration.innerHTML = '';
+                            var duration = document.createElement('h6');
+                            duration.className = 'w3-text-teal';
+                            duration.innerHTML = '';
 
-                        var i_duration = document.createElement('i');
-                        i_duration.className = 'fa fa-calendar fa-fw w3-margin-right';
-                        duration.appendChild(i_duration)
-                        duration.innerHTML += v_details.events[key].startdate + " to " + v_details.events[key].enddate;
+                            var i_duration = document.createElement('i');
+                            i_duration.className = 'fa fa-calendar fa-fw w3-margin-right';
+                            duration.appendChild(i_duration)
+                            duration.innerHTML += event.startdate + " to " + event.enddate;
 
-                        var description = document.createElement('p');
-                        description.style = "font-size:16px;"
-                        description.innerHTML = v_details.events[key].description;
+                            var description = document.createElement('p');
+                            description.style = "font-size:16px;"
+                            description.innerHTML = event.description;
 
-                        var hr = document.createElement('hr');
+                            var hr = document.createElement('hr');
 
-                        var container = document.createElement('div');
-                        container.className = 'w3-container';
-                        container.appendChild(name);
-                        container.appendChild(duration);
-                        container.appendChild(description);
-                        container.appendChild(hr);
-                        document.getElementById('events_view').appendChild(container);
+                            var container = document.createElement('div');
+                            container.className = 'w3-container';
+                            container.appendChild(name);
+                            container.appendChild(duration);
+                            container.appendChild(description);
+                            container.appendChild(hr);
+                            document.getElementById('events_view').appendChild(container);
+                        }
                     });
+                    // var keys = Object.keys(v_details.events);
+                    // keys.forEach(function(key){
+                    //     var name = document.createElement('h5');
+                    //     name.innerHTML = v_details.events[key].name;
+                    //
+                    //     var duration = document.createElement('h6');
+                    //     duration.className = 'w3-text-teal';
+                    //     duration.innerHTML = '';
+                    //
+                    //     var i_duration = document.createElement('i');
+                    //     i_duration.className = 'fa fa-calendar fa-fw w3-margin-right';
+                    //     duration.appendChild(i_duration)
+                    //     duration.innerHTML += v_details.events[key].startdate + " to " + v_details.events[key].enddate;
+                    //
+                    //     var description = document.createElement('p');
+                    //     description.style = "font-size:16px;"
+                    //     description.innerHTML = v_details.events[key].description;
+                    //
+                    //     var hr = document.createElement('hr');
+                    //
+                    //     var container = document.createElement('div');
+                    //     container.className = 'w3-container';
+                    //     container.appendChild(name);
+                    //     container.appendChild(duration);
+                    //     container.appendChild(description);
+                    //     container.appendChild(hr);
+                    //     document.getElementById('events_view').appendChild(container);
+                    // });
                 });
             }
         },
