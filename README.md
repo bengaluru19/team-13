@@ -1,5 +1,77 @@
 # team-13 (Final Web App) [API Documentation]
 
+<h2>(POST) Volunteer Report</h2>
+<p>The following is a sample call to the endpoint</p>
+<pre>
+{
+	"volunteerID":"enter-volunteer-id-here"
+}
+</pre>
+
+<p>Possible returns from the endpoint</p>
+<ul>
+	<li>Event Successfully Fetched (code = 0, "null" returned if event details are not present)
+	<pre>
+	{
+	    "code": 0,
+	    "message": "Volunteer's event details have been successfully fetched",
+	    "data": {
+		"8y5oVKKXD0TPfC1xdTXHtMpq4U23": {
+		    "first_name": "V R",
+		    "last_name": "Karthik",
+		    "total_hours": 14,
+		    "events": [
+			null,
+			{
+			    "description": "Painting a School",
+			    "enddate": "13-10-2019",
+			    "endtime": "17:00",
+			    "location": {
+				"city": "Bangalore",
+				"country": "India",
+				"latitude": "12.942406",
+				"longitude": "77.695459",
+				"name": "Bagalur"
+			    },
+			    "name": "Painting",
+			    "needs_volunteers": true,
+			    "startdate": "12-10-2019",
+			    "starttime": "09:00"
+			}
+		    ]
+		}
+	    }
+	}
+	</pre>
+	</li>
+	<li>Volunteer has attended no events, (code = 0)
+	<pre>
+	{
+		code : 0,
+		message : "Volunteer has attended no events",
+		data: {volunteerID:result}
+	}
+	</pre>
+	</li>
+	<li>Volunteer does not exist in the DB, (code = 1)
+	<pre>
+	{
+                code : 1,
+                message : "Error fetching volunteer details, please check volunteer ID"
+    	}
+	</pre>
+	</li>
+	<li>Error while retrieving volunteer-event details, (code = 1, error = Error code returned by Firebase)
+	<pre>
+	{
+	    code : 1,
+	    message : "Fatal error fetching volunteer details",
+	    error: errorObject.code
+	}
+	</pre>
+	</li>
+</ul>
+
 <h2>(POST) Create Event</h2>
 <p>The following is a sample call to the endpoint</p>
 <pre>
